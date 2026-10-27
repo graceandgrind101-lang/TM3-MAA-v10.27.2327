@@ -1,17 +1,19 @@
 import express from 'express';
+import { createServer as createHttpServer } from 'http';
 import { createServer as createViteServer } from 'vite';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import { GoogleGenAI } from '@google/genai';
 
-dotenv.config();
+dotenv.config({ quiet: true });
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 async function startServer() {
   const app = express();
+  const httpServer = createHttpServer(app);
   const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
   app.use(express.json());
@@ -26,36 +28,48 @@ async function startServer() {
         return res.status(400).json({ error: 'Messages array is required.' });
       }
 
-      const systemInstruction = `You are the TM Sports AI Coach & Club Concierge, an expert martial arts, athletic performance, and membership advisor for TM Sports (USA & Canada Athletics).
-Club Information:
-- Taekwondo: Led by Master Jin-Woo Park (4th Dan certified Kukkiwon). We offer Youth Taekwondo (Ages 5-12, White to Blue belts) and Adult Sparring & Poomsae.
-- Olympic WT Sparring Rules: 1 pt for punch to trunk, 2 pts for kick to trunk protector, 3 pts for high kick to helmet, 4-5 pts for spinning/turning kicks to head, Gam-Jeom penalty awards +1 pt to opponent.
-- Tournaments & Events: State Youth & Cadet Taekwondo Championship (Nov 14), Kids Quarterly Belt Exam (Nov 14), Autumn Black Belt Invitational (Nov 21), Cascade Ridge Hike 11.8km (Nov 7), Black Bear Peak Summit 16.4km (Nov 22).
-- Other programs: Group Aerobics & HIIT with Coach Elena Ramos ($65/mo), Strength & Barbell Power with Coach Marcus Vance ($85/mo), Open Gym 05:00 AM – 11:00 PM ($50/mo), Outdoor Hikes led by Wilderness EMT David Miller.
-- Membership options: Full Access $140/mo, Single Discipline $65-90/mo. Online Stripe payment or in-person cash/debit at the facility desk.
+      const systemInstruction = `You are the TM3 Martial Arts Academy & TM Sports AI Coach, an expert martial arts, group workout, dancing class, and membership advisor (Discipline & Determination — Est. 2000).
+Club Information (https://tm3gym.com):
+- Taekwondo: Led by Master Mulatu Biru (Est. 2000). Traditional martial arts training with structured belt progression, discipline, and technique for all ages. Classes run Tue, Wed, Thu, Fri at 5:15 PM and Sat at 10:00 AM.
+- Group Workout Sessions:
+  • Early Morning (Mon / Wed / Fri): 6:00 AM – 7:00 AM
+  • Late Morning (Mon – Fri): 9:00 AM – 10:00 AM
+  • Evening (Mon – Fri): 6:30 PM – 7:00 PM
+- Dancing Class Schedule & Cultural Dance (Led by Instructor Derege):
+  • Choose your 3-day track: Mon / Wed / Fri OR Tue / Thu / Sat
+  • Morning: 10:30 AM – 11:30 AM
+  • Afternoon: 4:00 PM – 5:00 PM
+  • Evening: 7:30 PM – 8:30 PM
+- Olympic WT Sparring Rules: 1 pt for punch to trunk, 2 pts for kick to trunk protector, 3 pts for high kick to helmet, 4-5 pts for spinning/turning kicks to head.
+- Membership Dues: Monthly $80, Quarterly $220, Annual $800. Existing members can claim their profile online using their 4-digit Member PIN.
+- Pro Shop: Uniforms (sizes XS–XXL), sparring gear sets, and TM3 branded apparel available at the front desk. Contact: tm3martialartsacademy@gmail.com.
 - Active User Context: Role: ${userRole || 'visitor'}, Member: ${memberName || 'Guest'}.
 
-Tone: Encouraging, energetic, disciplined, athletic, and concise. Format with bullet points for readability when explaining rules, schedules, or workouts. Always invite them to reserve a class or check the live leaderboard.`;
+Tone: Encouraging, energetic, disciplined, athletic, and concise. Format with bullet points for readability.`;
 
       if (!apiKey) {
-        // High quality fallback if GEMINI_API_KEY is not configured
         const lastUserMsg = messages[messages.length - 1]?.content || '';
-        let fallbackReply = `Welcome to TM Sports! I'm your AI Coach & Club Concierge.\n\n`;
+        let fallbackReply = `Welcome to TM3 Martial Arts Academy & TM Sports! I'm your AI Coach.\n\n`;
         const lower = lastUserMsg.toLowerCase();
         if (lower.includes('sparring') || lower.includes('taekwondo') || lower.includes('point') || lower.includes('rule')) {
-          fallbackReply += `In Olympic World Taekwondo (WT) sparring:\n• **1 pt**: Punch to trunk protector\n• **2 pts**: Turning or roundhouse kick to chest sensor\n• **3 pts**: High kick to headgear\n• **4-5 pts**: Spinning hook or turning kick to head\n• Every tournament match win grants **+25 Sparring Points** on our club leaderboard!`;
-        } else if (lower.includes('hike') || lower.includes('mountain') || lower.includes('trail')) {
-          fallbackReply += `Our upcoming trail expeditions:\n• **Cascade Ridge & Pine Valley Trail**: Nov 07 at 07:30 AM (11.8 km loop, 540m gain, Moderate, FREE for members)\n• **Black Bear Peak Summit**: Nov 22 at 06:45 AM (16.4 km alpine push, 920m gain, $25 permit)\nBoth award **+15 Event Points** on your member profile!`;
-        } else if (lower.includes('schedule') || lower.includes('class') || lower.includes('time')) {
-          fallbackReply += `Weekly session highlights:\n• **Youth Taekwondo**: Tue & Thu at 04:15 PM, Sat at 10:00 AM (Master Jin-Woo Park)\n• **Strength & Barbells**: Tue & Thu at 08:00 AM & 05:30 PM (Coach Marcus)\n• **Sunrise Aerobics**: Mon, Wed, Fri at 07:00 AM (Coach Elena Ramos)\nCheck the Tournaments & Calendar tab to reserve your spot!`;
+          fallbackReply += `At TM3 Martial Arts Academy (Est. 2000), Taekwondo is led by **Master Mulatu Biru** (Tue–Fri 5:15 PM & Sat 10:00 AM). In Olympic WT sparring:\n• **1 pt**: Punch to trunk protector\n• **2 pts**: Turning or roundhouse kick to chest sensor\n• **3 pts**: High kick to headgear\n• **4-5 pts**: Spinning hook or turning kick to head`;
+        } else if (lower.includes('dance') || lower.includes('dancing') || lower.includes('derege')) {
+          fallbackReply += `Our **Dancing Class Schedule** with Instructor **Derege** runs on two flexible tracks (**Mon / Wed / Fri** OR **Tue / Thu / Sat**):\n• **Morning**: 10:30 AM – 11:30 AM\n• **Afternoon**: 4:00 PM – 5:00 PM\n• **Evening**: 7:30 PM – 8:30 PM`;
+        } else if (lower.includes('schedule') || lower.includes('class') || lower.includes('time') || lower.includes('workout')) {
+          fallbackReply += `Here is our weekly schedule at **TM3 Martial Arts Academy**:\n• **Group Workout Sessions**: Early Morning (Mon/Wed/Fri 6:00–7:00 AM), Late Morning (Mon–Fri 9:00–10:00 AM), Evening (Mon–Fri 6:30–7:00 PM)\n• **Dancing Classes (Instructor Derege)**: Mon/Wed/Fri OR Tue/Thu/Sat at 10:30–11:30 AM, 4:00–5:00 PM, and 7:30–8:30 PM\n• **Taekwondo (Master Mulatu Biru)**: Tue, Wed, Thu, Fri at 5:15 PM & Sat at 10:00 AM`;
         } else {
-          fallbackReply += `How can I help you today? I can guide you through Taekwondo sparring tactics, explain Olympic scoring rules, detail our weekend mountain hikes, or assist with class bookings and memberships!`;
+          fallbackReply += `How can I help you today? Ask me about our **Group Workout Sessions** (6 AM, 9 AM, 6:30 PM), **Dancing Class Schedule** (Mon/Wed/Fri or Tue/Thu/Sat), **Taekwondo with Master Mulatu Biru**, or our **$80/mo Membership Plans**!`;
         }
         return res.json({ reply: fallbackReply });
       }
 
       const ai = new GoogleGenAI({
-        apiKey
+        apiKey,
+        httpOptions: {
+          headers: {
+            'User-Agent': 'aistudio-build',
+          },
+        },
       });
 
       // Format multi-turn conversation contents
@@ -92,13 +106,17 @@ Tone: Encouraging, energetic, disciplined, athletic, and concise. Format with bu
     });
   } else {
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true,
+        hmr: process.env.DISABLE_HMR === 'true' ? false : { server: httpServer },
+        watch: process.env.DISABLE_HMR === 'true' ? null : {},
+      },
       appType: 'spa',
     });
     app.use(vite.middlewares);
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
+  httpServer.listen(PORT, '0.0.0.0', () => {
     console.log(`TM Sports dev server running on http://0.0.0.0:${PORT}`);
   });
 }

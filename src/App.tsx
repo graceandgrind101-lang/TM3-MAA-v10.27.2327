@@ -39,6 +39,19 @@ function MainApp() {
     }
   }, [role]);
 
+  useEffect(() => {
+    const sectionTabs = ['services', 'schedule', 'announcements', 'about', 'contact'];
+    if (sectionTabs.includes(currentTab)) {
+      const timer = setTimeout(() => {
+        const el = document.getElementById(currentTab);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 60);
+      return () => clearTimeout(timer);
+    } else if (currentTab === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [currentTab]);
+
   const handleSelectService = (service: SportService) => {
     const sched = document.getElementById('schedule');
     if (sched) {

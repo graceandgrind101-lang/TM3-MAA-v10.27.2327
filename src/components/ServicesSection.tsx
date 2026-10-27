@@ -75,7 +75,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
   };
 
   return (
-    <section id="services" className="py-20 bg-[#f8fafd] border-b border-[#e0e2ec]">
+    <section id="services" className="scroll-mt-24 py-20 bg-[#f8fafd] border-b border-[#e0e2ec]">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header (Google style) */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">

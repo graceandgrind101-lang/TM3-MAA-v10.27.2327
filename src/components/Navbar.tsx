@@ -39,13 +39,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, setCurrentTab }) => 
 
   return (
     <header className="bg-[#ffffff] border-b border-[#e0e2ec] sticky top-[41px] z-40 transition-shadow">
-      <div className="max-w-7xl mx-auto px-6 py-2.5 flex items-center justify-between gap-6">
-        {/* Left: Google-style Brand Lockup */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between gap-3">
+        {/* Left: Brand Lockup */}
         <button
           onClick={() => setCurrentTab('home')}
           className="flex items-center gap-2.5 group whitespace-nowrap shrink-0 text-left"
         >
-          {/* Authentic Google Multi-Color Emblem */}
+          {/* Multi-Color Emblem */}
           <div className="w-9 h-9 rounded-xl bg-[#f0f4f9] border border-[#dadce0] p-1.5 flex items-center justify-center shadow-xs group-hover:bg-[#e8f0fe] transition-colors">
             <svg viewBox="0 0 24 24" className="w-5 h-5">
               <path
@@ -59,50 +59,50 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, setCurrentTab }) => 
           </div>
           <div className="flex flex-col">
             <div className="flex items-center gap-1.5">
-              <span className="text-[19px] font-medium tracking-tight text-[#1f1f1f]">
+              <span className="text-[18px] font-medium tracking-tight text-[#1f1f1f]">
                 TM Sports
               </span>
               <span className="text-[10px] font-medium px-1.5 py-0.2 rounded-md bg-[#e8f0fe] text-[#1a73e8]">
-                Club
+                TM3
               </span>
             </div>
-            <span className="text-[10px] text-[#747775] -mt-0.5">USA & Canada Athletics</span>
+            <span className="text-[10px] text-[#747775] -mt-0.5">Martial Arts & Fitness</span>
           </div>
         </button>
 
-        {/* Center: Google-style Search Pill (Ctrl + K) */}
-        <div className="flex-1 max-w-lg items-center relative">
+        {/* Center: Search Pill (Ctrl + K) */}
+        <div className="flex-1 max-w-xs xl:max-w-sm items-center relative">
           <button
             onClick={() => setIsSearchOpen(true)}
-            className="w-full flex items-center justify-between gap-2.5 bg-[#f0f4f9] hover:bg-[#e9eef6] border border-[#dadce0]/60 rounded-full px-4 py-2 transition-all cursor-pointer text-left group shadow-2xs hover:shadow-xs"
+            className="w-full flex items-center justify-between gap-2 bg-[#f0f4f9] hover:bg-[#e9eef6] border border-[#dadce0]/60 rounded-full px-3.5 py-1.5 transition-all cursor-pointer text-left group shadow-2xs hover:shadow-xs"
             title="Quick Search (Ctrl + K)"
           >
-            <div className="flex items-center gap-2.5 overflow-hidden">
-              <Search className="w-4 h-4 text-[#5f6368] group-hover:text-[#1a73e8] shrink-0 transition-colors" />
+            <div className="flex items-center gap-2 overflow-hidden">
+              <Search className="w-3.5 h-3.5 text-[#5f6368] group-hover:text-[#1a73e8] shrink-0 transition-colors" />
               <span className="text-xs text-[#5f6368] truncate">
                 {language === 'en'
-                  ? 'Search classes, disciplines, announcements...'
-                  : 'Rechercher cours, disciplines, annonces...'}
+                  ? 'Search classes, programs, news...'
+                  : 'Rechercher cours, programmes...'}
               </span>
             </div>
 
             <div className="flex items-center gap-1 shrink-0 text-[10px] font-mono text-[#5f6368] bg-[#ffffff] border border-[#dadce0] px-2 py-0.5 rounded-full shadow-2xs">
-              <kbd className="hidden sm:inline">Ctrl + K</kbd>
+              <kbd className="hidden sm:inline">Ctrl+K</kbd>
               <kbd className="sm:hidden">⌘K</kbd>
             </div>
           </button>
         </div>
 
-        {/* Right: Google-style Nav Links & Actions */}
-        <div className="flex items-center gap-2 shrink-0">
-          <nav className="hidden xl:flex items-center gap-1 text-xs font-medium text-[#444746] mr-2">
+        {/* Right: Nav Links & Actions */}
+        <div className="flex items-center gap-1.5 shrink-0">
+          <nav className="hidden xl:flex items-center gap-0.5 text-xs font-medium text-[#444746] mr-1">
             {navLinks.map((link) => {
               const isActive = currentTab === link.id;
               return (
                 <button
                   key={link.id}
                   onClick={() => setCurrentTab(link.id)}
-                  className={`px-3 py-1.5 rounded-full transition-colors whitespace-nowrap ${
+                  className={`px-2.5 py-1.5 rounded-full transition-colors whitespace-nowrap ${
                     isActive
                       ? 'bg-[#e8f0fe] text-[#1a73e8] font-semibold'
                       : 'hover:bg-[#f1f3f4] hover:text-[#1f1f1f]'

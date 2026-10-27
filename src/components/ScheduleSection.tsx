@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { TimetableClass } from '../types';
-import { Calendar as CalendarIcon, Clock, MapPin, User, CheckCircle2, ChevronLeft, ChevronRight, CalendarDays, List } from 'lucide-react';
+import { Calendar as CalendarIcon, Clock, MapPin, User, CheckCircle2, Dumbbell, CalendarDays, List } from 'lucide-react';
 import { CalendarView } from './CalendarView';
+import {
+  GROUP_WORKOUT_SESSIONS,
+  DANCING_CLASS_SESSIONS,
+  DANCING_CLASS_TRACKS,
+  formatSessionDuration,
+} from '../utils/scheduleUtils';
 
 export const ScheduleSection: React.FC = () => {
   const { classes, activeMember, bookClass, cancelClassBooking, setIsRegistrationOpen, role, language } = useApp();
@@ -61,10 +67,10 @@ export const ScheduleSection: React.FC = () => {
   };
 
   return (
-    <section id="schedule" className="py-20 bg-[#ffffff] border-b border-[#e0e2ec]">
+    <section id="schedule" className="scroll-mt-24 py-20 bg-[#ffffff] border-b border-[#e0e2ec]">
       <div className="max-w-7xl mx-auto px-6">
         {/* Google Calendar Header Bar */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-6 border-b border-[#e0e2ec]">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-6 border-b border-[#e0e2ec]">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-[#e8f0fe] flex items-center justify-center text-[#1a73e8]">
               <CalendarIcon className="w-5 h-5" />
@@ -75,11 +81,11 @@ export const ScheduleSection: React.FC = () => {
                   Weekly athletic <span className="font-semibold text-[#1a73e8]">timetable</span>
                 </h2>
                 <span className="text-[10px] font-medium bg-[#e8f0fe] text-[#1a73e8] px-2 py-0.5 rounded-full">
-                  Google Calendar Sync
+                  TM3 Martial Arts Academy
                 </span>
               </div>
               <p className="text-xs text-[#5f6368] mt-0.5">
-                Daily sessions across weight training racks, youth dojo, and cardio studios
+                Group Workout Sessions, Dancing Classes (Mon/Wed/Fri OR Tue/Thu/Sat), and TM3 Taekwondo (Tue–Fri 5:15 PM)
               </p>
             </div>
           </div>
@@ -138,6 +144,125 @@ export const ScheduleSection: React.FC = () => {
           </div>
         </div>
 
+        {/* Featured Group Workout Sessions & Dancing Class Schedule Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          {/* Card 1: 🏋️ Group Workout Sessions */}
+          <div className="bg-[#f8fafd] border border-[#e0e2ec] rounded-3xl p-5 sm:p-6 shadow-2xs flex flex-col justify-between">
+            <div>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-[#1a73e8] text-white flex items-center justify-center text-sm shadow-2xs">
+                    🏋️
+                  </div>
+                  <div>
+                    <h3 className="text-sm sm:text-base font-semibold text-[#1f1f1f]">
+                      Group Workout Sessions
+                    </h3>
+                    <p className="text-[11px] text-[#5f6368]">
+                      Strength & conditioning group fitness classes
+                    </p>
+                  </div>
+                </div>
+                <span className="text-[10px] font-semibold text-[#137333] bg-[#c4eed0] px-2.5 py-1 rounded-full self-start sm:self-auto">
+                  Mon – Fri
+                </span>
+              </div>
+
+              <div className="space-y-3">
+                {GROUP_WORKOUT_SESSIONS.map((slot, index) => {
+                  const accents = [
+                    'border-l-[#ea4335] bg-[#ffffff]',
+                    'border-l-[#1a73e8] bg-[#ffffff]',
+                    'border-l-[#34a853] bg-[#ffffff]',
+                  ];
+                  const badgeColors = [
+                    'bg-[#fce8e6] text-[#c5221f]',
+                    'bg-[#e8f0fe] text-[#1a73e8]',
+                    'bg-[#c4eed0] text-[#137333]',
+                  ];
+                  return (
+                    <div
+                      key={slot.id}
+                      className={`p-3.5 rounded-2xl border border-[#dadce0] border-l-4 ${accents[index]} flex items-center justify-between gap-3 shadow-2xs`}
+                    >
+                      <div className="space-y-0.5">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-semibold text-[#1f1f1f]">{slot.label}</span>
+                          <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${badgeColors[index]}`}>
+                            ({slot.daysLabel})
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1.5 text-xs font-bold font-mono text-[#1f1f1f]">
+                          <Clock className="w-3.5 h-3.5 text-[#1a73e8]" />
+                          <span>
+                            {slot.startTime} – {slot.endTime}
+                          </span>
+                        </div>
+                      </div>
+                      <span className="text-[11px] text-[#5f6368] font-mono shrink-0">{slot.durationMinutes} min</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: 💃 Dancing Class Schedule */}
+          <div className="bg-[#f8fafd] border border-[#e0e2ec] rounded-3xl p-5 sm:p-6 shadow-2xs flex flex-col justify-between">
+            <div>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-[#a142f4] text-white flex items-center justify-center text-sm shadow-2xs">
+                    💃
+                  </div>
+                  <div>
+                    <h3 className="text-sm sm:text-base font-semibold text-[#1f1f1f]">
+                      Dancing Class Schedule
+                    </h3>
+                    <p className="text-[11px] text-[#5f6368]">
+                      Led by Instructor Derege · Choose your 3-day weekly track
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <span className="text-[10px] font-semibold text-[#8430ce] bg-[#f3e8fd] px-2.5 py-1 rounded-full">
+                    {DANCING_CLASS_TRACKS[0].label}
+                  </span>
+                  <span className="text-[10px] font-bold text-[#5f6368]">OR</span>
+                  <span className="text-[10px] font-semibold text-[#1a73e8] bg-[#e8f0fe] px-2.5 py-1 rounded-full">
+                    {DANCING_CLASS_TRACKS[1].label}
+                  </span>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                {DANCING_CLASS_SESSIONS.map((slot) => (
+                  <div
+                    key={slot.id}
+                    className="p-3.5 rounded-2xl border border-[#dadce0] border-l-4 border-l-[#a142f4] bg-[#ffffff] flex items-center justify-between gap-3 shadow-2xs"
+                  >
+                    <div className="space-y-0.5">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-semibold text-[#1f1f1f]">{slot.label}</span>
+                        <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-[#f3e8fd] text-[#8430ce]">
+                          Mon · Wed · Fri OR Tue · Thu · Sat
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-xs font-bold font-mono text-[#1f1f1f]">
+                        <Clock className="w-3.5 h-3.5 text-[#a142f4]" />
+                        <span>
+                          {slot.startTime} – {slot.endTime}
+                        </span>
+                      </div>
+                    </div>
+                    <span className="text-[11px] text-[#5f6368] font-mono shrink-0">{slot.durationMinutes} min</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Content based on view */}
         {scheduleView === 'calendar' ? (
           <CalendarView />
@@ -164,12 +289,14 @@ export const ScheduleSection: React.FC = () => {
                 >
                   {/* Left: Time and Title */}
                   <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 flex-1">
-                    <div className="min-w-[130px]">
+                    <div className="min-w-[140px]">
                       <div className="flex items-center gap-1.5 text-xs font-bold text-[#1f1f1f] font-mono">
                         <Clock className="w-3.5 h-3.5 text-[#5f6368]" />
                         <span>{item.startTime} – {item.endTime}</span>
                       </div>
-                      <div className="text-[11px] text-[#5f6368] mt-0.5">50 min session</div>
+                      <div className="text-[11px] text-[#5f6368] mt-0.5">
+                        {formatSessionDuration(item.startTime, item.endTime)}
+                      </div>
                     </div>
 
                     <div className="space-y-1">
@@ -183,7 +310,11 @@ export const ScheduleSection: React.FC = () => {
                       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#5f6368]">
                         <div className="flex items-center gap-1">
                           <User className="w-3 h-3 text-[#747775]" />
-                          <span>Coach {item.instructor}</span>
+                          <span>
+                            {item.instructor.startsWith('Coach') || item.instructor.startsWith('Master')
+                              ? item.instructor
+                              : `Instructor ${item.instructor}`}
+                          </span>
                         </div>
                         <span aria-hidden="true">·</span>
                         <div className="flex items-center gap-1">

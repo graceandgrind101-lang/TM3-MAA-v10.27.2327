@@ -105,17 +105,17 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Load from localStorage or defaults
   const [members, setMembers] = useState<Member[]>(() => {
-    const saved = localStorage.getItem('tm_members');
+    const saved = localStorage.getItem('tm_members_v2');
     return saved ? JSON.parse(saved) : INITIAL_MEMBERS;
   });
 
   const [classes, setClasses] = useState<TimetableClass[]>(() => {
-    const saved = localStorage.getItem('tm_classes');
+    const saved = localStorage.getItem('tm_classes_v3');
     return saved ? JSON.parse(saved) : INITIAL_CLASSES;
   });
 
   const [announcements, setAnnouncements] = useState<Announcement[]>(() => {
-    const saved = localStorage.getItem('tm_announcements');
+    const saved = localStorage.getItem('tm_announcements_v2');
     return saved ? JSON.parse(saved) : INITIAL_ANNOUNCEMENTS;
   });
 
@@ -177,15 +177,15 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Sync to localStorage
   useEffect(() => {
-    localStorage.setItem('tm_members', JSON.stringify(members));
+    localStorage.setItem('tm_members_v2', JSON.stringify(members));
   }, [members]);
 
   useEffect(() => {
-    localStorage.setItem('tm_classes', JSON.stringify(classes));
+    localStorage.setItem('tm_classes_v3', JSON.stringify(classes));
   }, [classes]);
 
   useEffect(() => {
-    localStorage.setItem('tm_announcements', JSON.stringify(announcements));
+    localStorage.setItem('tm_announcements_v2', JSON.stringify(announcements));
   }, [announcements]);
 
   useEffect(() => {
@@ -722,8 +722,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setTournaments(INITIAL_TOURNAMENTS);
     setLeaderboard(INITIAL_LEADERBOARD);
     localStorage.removeItem('tm_members');
+    localStorage.removeItem('tm_members_v2');
     localStorage.removeItem('tm_classes');
+    localStorage.removeItem('tm_classes_v2');
+    localStorage.removeItem('tm_classes_v3');
     localStorage.removeItem('tm_announcements');
+    localStorage.removeItem('tm_announcements_v2');
     localStorage.removeItem('tm_hikes');
     localStorage.removeItem('tm_telegram');
     localStorage.removeItem('tm_activity_logs');

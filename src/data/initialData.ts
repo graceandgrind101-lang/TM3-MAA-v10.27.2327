@@ -9,22 +9,69 @@ import {
   TournamentEvent,
   LeaderboardAthlete
 } from '../types';
+import aerobicsImg from '../assets/images/service_aerobics_group_1793107475923.jpg';
+import taekwondoImg from '../assets/images/service_taekwondo_kids_1793107475549.jpg';
+import hikingImg from '../assets/images/service_hiking_mountains_1793107477262.jpg';
 
 export const INITIAL_SERVICES: SportService[] = [
   {
     id: 'aerobics',
-    title: 'Group Aerobics & Cardio',
-    tagline: 'High-energy rhythmic conditioning and athletic step intervals',
+    title: 'Group Workout Sessions',
+    tagline: 'Strength and conditioning group fitness classes to build power, endurance, and community',
     category: 'aerobics',
-    description: 'Electrifying 50-minute instructor-led sessions combining step choreography, athletic agility ladders, and heart-rate zone cardio. Built to enhance stamina, burn calories, and build endurance with motivating playlists.',
-    scheduleSummary: 'Mon / Wed / Fri · 7:00 AM & 6:00 PM',
-    pricingMonthly: 65,
-    pricingLabel: '$65 / mo or included in Full Access',
-    image: '/src/assets/images/service_aerobics_group_1793107475923.jpg',
-    instructor: 'Coach Elena Ramos',
+    description: 'Strength and conditioning group fitness classes designed to build power, endurance, and community at TM3 Martial Arts Academy. Available across Early Morning (Mon / Wed / Fri 6:00 AM – 7:00 AM), Late Morning (Mon – Fri 9:00 AM – 10:00 AM), and Evening (Mon – Fri 6:30 PM – 7:00 PM) sessions.',
+    scheduleSummary: 'Early (Mon/Wed/Fri 6–7 AM) · Late (Mon–Fri 9–10 AM) · Evening (Mon–Fri 6:30–7 PM)',
+    pricingMonthly: 80,
+    pricingLabel: '$80 / mo · $220 / quarter · $800 / yr',
+    image: aerobicsImg,
+    instructor: 'Coach Elena Ramos & Marcus Vance',
     capacity: 25,
     currentEnrolled: 22,
-    features: ['High-impact & low-impact options', 'Step platforms & resistance bands', 'Heart rate pacing guidance', 'Morning & evening slots']
+    features: [
+      'Early Morning (Mon / Wed / Fri): 6:00 AM – 7:00 AM',
+      'Late Morning (Mon – Fri): 9:00 AM – 10:00 AM',
+      'Evening (Mon – Fri): 6:30 PM – 7:00 PM',
+      'Strength, conditioning & endurance circuits'
+    ]
+  },
+  {
+    id: 'taekwondo',
+    title: 'Taekwondo & Martial Arts',
+    tagline: 'Traditional martial arts training with structured belt progression, discipline & technique (Est. 2000)',
+    category: 'taekwondo',
+    description: 'Traditional martial arts training with structured belt progression, discipline, and technique for all ages at TM3 Martial Arts Academy (Est. 2000). Led by Master Mulatu Biru, emphasizing courtesy, integrity, perseverance, self-control, and indomitable spirit.',
+    scheduleSummary: 'Tue / Wed / Thu / Fri · 5:15 PM & Sat · 10:00 AM',
+    pricingMonthly: 80,
+    pricingLabel: '$80 / mo · $220 / quarter · $800 / yr',
+    image: taekwondoImg,
+    instructor: 'Master Mulatu Biru',
+    capacity: 25,
+    currentEnrolled: 21,
+    features: [
+      'Structured belt progression for Youth & Adults',
+      'Tue, Wed, Thu, Fri at 5:15 PM & Sat at 10:00 AM',
+      'Pro Shop uniforms (XS–XXL) & sparring gear sets',
+      'Quarterly belt promotion exams & certificates'
+    ]
+  },
+  {
+    id: 'dance',
+    title: 'Dancing Classes & Cultural Dance',
+    tagline: 'Cultural dance workouts & rhythm tracks (Mon / Wed / Fri OR Tue / Thu / Sat)',
+    category: 'dance',
+    description: 'High-energy Cultural Dance and cardio rhythm classes led by Instructor Derege. Choose your flexible 3-day weekly track: Mon / Wed / Fri OR Tue / Thu / Sat across Morning (10:30 AM – 11:30 AM), Afternoon (4:00 PM – 5:00 PM), or Evening (7:30 PM – 8:30 PM) sessions.',
+    scheduleSummary: 'Mon/Wed/Fri OR Tue/Thu/Sat · 10:30–11:30 AM, 4:00–5:00 PM, 7:30–8:30 PM',
+    pricingMonthly: 80,
+    pricingLabel: '$80 / mo · $220 / quarter · $800 / yr',
+    instructor: 'Derege',
+    capacity: 24,
+    currentEnrolled: 20,
+    features: [
+      'Tracks: Mon / Wed / Fri OR Tue / Thu / Sat',
+      'Morning: 10:30 AM – 11:30 AM',
+      'Afternoon: 4:00 PM – 5:00 PM',
+      'Evening: 7:30 PM – 8:30 PM'
+    ]
   },
   {
     id: 'strength',
@@ -32,28 +79,13 @@ export const INITIAL_SERVICES: SportService[] = [
     tagline: 'Progressive overload, barbell lifting, and functional athletic power',
     category: 'strength',
     description: 'Structured small-group strength programming led by certified strength coaches. Focus on squats, deadlifts, presses, and athletic kettlebell complexes with strict form correction and personalized weight tracking.',
-    scheduleSummary: 'Tue / Thu / Sat · 8:00 AM & 5:30 PM',
-    pricingMonthly: 85,
-    pricingLabel: '$85 / mo',
+    scheduleSummary: 'Late Morning (Mon – Fri · 9:00 AM – 10:00 AM) & Evening (6:30 PM – 7:00 PM)',
+    pricingMonthly: 80,
+    pricingLabel: '$80 / mo · $220 / quarter · $800 / yr',
     instructor: 'Coach Marcus Vance',
     capacity: 18,
     currentEnrolled: 16,
     features: ['Eleiko barbells & bumper plates', 'Squat racks & bench stations', 'Bi-weekly strength tracking logs', 'Targeted hypertrophy & power']
-  },
-  {
-    id: 'taekwondo',
-    title: 'Taekwondo for Kids',
-    tagline: 'Character, discipline, and agility martial arts for youth ages 5–12',
-    category: 'taekwondo',
-    description: 'Separate dedicated youth martial arts program emphasizing core tenets: courtesy, integrity, perseverance, self-control, and indomitable spirit. Taught by certified 4th Dan masters with belt rank advancement exams.',
-    scheduleSummary: 'Tue / Thu · 4:15 PM & Sat · 10:00 AM',
-    pricingMonthly: 90,
-    pricingLabel: '$90 / mo (Separate Youth Enrollment)',
-    image: '/src/assets/images/service_taekwondo_kids_1793107475549.jpg',
-    instructor: 'Master Jin-Woo Park (4th Dan)',
-    capacity: 20,
-    currentEnrolled: 18,
-    features: ['Official belt advancement curriculum', 'Agility drills & sparring discipline', 'Parent pickup confirmation alerts', 'Quarterly belt tests & certificates']
   },
   {
     id: 'hiking',
@@ -64,53 +96,39 @@ export const INITIAL_SERVICES: SportService[] = [
     scheduleSummary: 'Alternate Saturdays & Sundays · 7:30 AM departure',
     pricingMonthly: 0,
     pricingLabel: 'Free for members · $25/summit for permits/transport',
-    image: '/src/assets/images/service_hiking_mountains_1793107477262.jpg',
+    image: hikingImg,
     instructor: 'David Miller (Wilderness EMT)',
     capacity: 30,
     currentEnrolled: 24,
     features: ['Scenic 6km to 18km curated trails', 'Trek safety briefings & GPS route maps', 'Carpool coordination assistance', 'Post-summit recovery picnic']
   },
   {
-    id: 'dance',
-    title: 'Athletic Dance Classes',
-    tagline: 'Cardio hip-hop, latin pulse, and athletic rhythm coordination',
-    category: 'dance',
-    description: 'Dynamic rhythm-fueled cardio dance sessions designed to challenge your agility, coordination, and aerobic fitness. Accessible to all skill levels with high-octane energy and infectious choreography.',
-    scheduleSummary: 'Mon / Wed · 7:15 PM',
-    pricingMonthly: 60,
-    pricingLabel: '$60 / mo',
-    instructor: 'Chloe Fontaine',
-    capacity: 22,
-    currentEnrolled: 19,
-    features: ['High-energy playlist selections', 'Full-body cardiovascular burn', 'Coordination & mobility building', 'No prior dance experience needed']
-  },
-  {
     id: 'pt',
     title: '1-on-1 Personal Training',
     tagline: 'Customized periodization, mobility, and private athletic coaching',
     category: 'pt',
-    description: 'Tailored private training packages designed around your specific athletic milestones, injury rehabilitation, or competition prep. Includes full bio-mechanical assessment and 3D nutrition tracking guidance.',
+    description: 'Tailored private training packages designed around your specific athletic milestones, injury rehabilitation, or competition prep. Includes full bio-mechanical assessment and nutrition tracking guidance.',
     scheduleSummary: 'By Appointment · Mon through Sat',
     pricingMonthly: 160,
     pricingLabel: '$160 / 4 sessions ($45/session drop-in)',
-    instructor: 'Marcus Vance & Senior Staff',
+    instructor: 'Master Mulatu Biru & Marcus Vance',
     capacity: 12,
     currentEnrolled: 10,
     features: ['Individual movement screening', 'Custom periodization blueprint', 'Weekly body composition check-in', 'Direct 1-on-1 coach chat']
   },
   {
     id: 'opengym',
-    title: 'Open Gym Access',
-    tagline: 'Independent training floor access, cardio theater, and free weight zone',
+    title: 'Open Gym & Pro Shop Access',
+    tagline: 'Independent training floor access, cardio zone, and TM3 Pro Shop gear',
     category: 'opengym',
-    description: 'Unrestricted independent training access from 5:00 AM to 11:00 PM daily. Full access to Olympic platforms, dumbbells up to 125 lbs, cable stations, Assault bikes, Concept2 rowers, and locker amenities.',
+    description: 'Unrestricted independent training access from 5:00 AM to 11:00 PM daily. Full access to Olympic platforms, heavy bags, mats, cardio rowers, and front-desk Pro Shop (uniforms XS–XXL & sparring gear sets).',
     scheduleSummary: 'Daily · 5:00 AM – 11:00 PM',
-    pricingMonthly: 50,
-    pricingLabel: '$50 / mo (Included in Full Membership)',
+    pricingMonthly: 80,
+    pricingLabel: 'Included in $80/mo Membership',
     instructor: 'Floor Supervisor on Duty',
     capacity: 60,
     currentEnrolled: 54,
-    features: ['Keycard & mobile QR scan entry', 'Olympic lifting chalk stations', 'Concept2 cardio conditioning rowers', 'Showers & private locker rooms']
+    features: ['4-Digit Member PIN & QR check-in', 'Pro Shop uniforms (XS–XXL) & sparring gear', 'Heavy bags & mat training space', 'Showers & private locker rooms']
   }
 ];
 
@@ -123,7 +141,7 @@ export const INITIAL_MEMBERS: Member[] = [
     status: 'active',
     joinDate: '2026-02-15',
     renewalDate: '2026-11-15',
-    services: ['Strength & Weight Training', 'Open Gym Access', 'Outdoor Hiking & Trail Summits'],
+    services: ['Group Workout Sessions', 'Taekwondo & Martial Arts', 'Outdoor Hiking & Trail Summits'],
     emergencyContact: {
       name: 'Jordan Rivers',
       relationship: 'Spouse',
@@ -131,7 +149,7 @@ export const INITIAL_MEMBERS: Member[] = [
     },
     qrCodeId: 'TM-PASS-8472-A',
     paymentMethod: 'stripe',
-    lastPaymentAmount: 85,
+    lastPaymentAmount: 80,
     sparringPoints: 680,
     eventParticipationCount: 11
   },
@@ -143,7 +161,7 @@ export const INITIAL_MEMBERS: Member[] = [
     status: 'pending',
     joinDate: '2026-10-25',
     renewalDate: '2026-11-25',
-    services: ['Taekwondo for Kids', 'Group Aerobics & Cardio'],
+    services: ['Taekwondo & Martial Arts', 'Group Workout Sessions'],
     emergencyContact: {
       name: 'David Lin',
       relationship: 'Brother',
@@ -169,7 +187,7 @@ export const INITIAL_MEMBERS: Member[] = [
     status: 'expired',
     joinDate: '2025-08-10',
     renewalDate: '2026-10-10',
-    services: ['1-on-1 Personal Training', 'Open Gym Access'],
+    services: ['1-on-1 Personal Training', 'Open Gym & Pro Shop Access'],
     emergencyContact: {
       name: 'Claire Dubois',
       relationship: 'Partner',
@@ -178,7 +196,7 @@ export const INITIAL_MEMBERS: Member[] = [
     notes: 'Membership expired 17 days ago. Sent renewal notice on Oct 12.',
     qrCodeId: 'TM-PASS-3112-E',
     paymentMethod: 'stripe',
-    lastPaymentAmount: 160
+    lastPaymentAmount: 80
   },
   {
     id: 'tm-mem-104',
@@ -188,7 +206,7 @@ export const INITIAL_MEMBERS: Member[] = [
     status: 'active',
     joinDate: '2026-03-01',
     renewalDate: '2026-11-01',
-    services: ['Group Aerobics & Cardio', 'Athletic Dance Classes', 'Outdoor Hiking & Trail Summits'],
+    services: ['Group Workout Sessions', 'Dancing Classes & Cultural Dance', 'Outdoor Hiking & Trail Summits'],
     emergencyContact: {
       name: 'Fiona O’Connor',
       relationship: 'Mother',
@@ -196,7 +214,7 @@ export const INITIAL_MEMBERS: Member[] = [
     },
     qrCodeId: 'TM-PASS-4421-A',
     paymentMethod: 'stripe',
-    lastPaymentAmount: 65
+    lastPaymentAmount: 220
   },
   {
     id: 'tm-mem-105',
@@ -206,7 +224,7 @@ export const INITIAL_MEMBERS: Member[] = [
     status: 'active',
     joinDate: '2026-01-18',
     renewalDate: '2026-11-18',
-    services: ['Taekwondo for Kids', 'Open Gym Access'],
+    services: ['Taekwondo & Martial Arts', 'Open Gym & Pro Shop Access'],
     emergencyContact: {
       name: 'Carlos Morales',
       relationship: 'Spouse',
@@ -220,7 +238,7 @@ export const INITIAL_MEMBERS: Member[] = [
     },
     qrCodeId: 'TM-PASS-7734-A',
     paymentMethod: 'stripe',
-    lastPaymentAmount: 90
+    lastPaymentAmount: 80
   },
   {
     id: 'tm-mem-106',
@@ -230,7 +248,7 @@ export const INITIAL_MEMBERS: Member[] = [
     status: 'active',
     joinDate: '2026-05-12',
     renewalDate: '2026-11-12',
-    services: ['Strength & Weight Training', 'Open Gym Access'],
+    services: ['Strength & Weight Training', 'Open Gym & Pro Shop Access'],
     emergencyContact: {
       name: 'Hannah Taylor',
       relationship: 'Sister',
@@ -238,19 +256,20 @@ export const INITIAL_MEMBERS: Member[] = [
     },
     qrCodeId: 'TM-PASS-5599-A',
     paymentMethod: 'in_person',
-    lastPaymentAmount: 85
+    lastPaymentAmount: 80
   }
 ];
 
 export const INITIAL_CLASSES: TimetableClass[] = [
+  // MONDAY (Group Workouts: 6-7 AM, 9-10 AM, 6:30-7 PM | Dancing Class Track A [Mon/Wed/Fri]: 10:30-11:30 AM, 4-5 PM, 7:30-8:30 PM + Cultural Dance 5-6 PM)
   {
-    id: 'cls-1',
+    id: 'cls-mon-early',
     serviceId: 'aerobics',
-    serviceName: 'Group Aerobics (Sunrise Step)',
+    serviceName: 'Early Morning Group Workout (Strength & Conditioning)',
     dayOfWeek: 'Monday',
-    startTime: '07:00 AM',
-    endTime: '07:50 AM',
-    room: 'Studio Alpha',
+    startTime: '6:00 AM',
+    endTime: '7:00 AM',
+    room: 'Main Training Floor',
     instructor: 'Elena Ramos',
     capacity: 25,
     bookedMemberIds: ['tm-mem-101', 'tm-mem-104'],
@@ -258,26 +277,84 @@ export const INITIAL_CLASSES: TimetableClass[] = [
     level: 'All Levels'
   },
   {
-    id: 'cls-2',
-    serviceId: 'dance',
-    serviceName: 'Athletic Latin Cardio Fusion',
+    id: 'cls-mon-late',
+    serviceId: 'strength',
+    serviceName: 'Late Morning Group Workout (Full-Body Strength & Power)',
     dayOfWeek: 'Monday',
-    startTime: '07:15 PM',
-    endTime: '08:15 PM',
-    room: 'Studio Alpha',
-    instructor: 'Chloe Fontaine',
-    capacity: 22,
+    startTime: '9:00 AM',
+    endTime: '10:00 AM',
+    room: 'Weight Rig Zone',
+    instructor: 'Coach Marcus Vance',
+    capacity: 20,
+    bookedMemberIds: ['tm-mem-101', 'tm-mem-106'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-mon-dance-morn',
+    serviceId: 'dance',
+    serviceName: 'Morning Dancing Class (Mon/Wed/Fri Track · Cultural Dance & Rhythm)',
+    dayOfWeek: 'Monday',
+    startTime: '10:30 AM',
+    endTime: '11:30 AM',
+    room: 'Dance Studio B',
+    instructor: 'Derege',
+    capacity: 24,
     bookedMemberIds: ['tm-mem-104'],
     waitlistMemberIds: [],
     level: 'All Levels'
   },
   {
-    id: 'cls-3',
+    id: 'cls-mon-dance-aft',
+    serviceId: 'dance',
+    serviceName: 'Afternoon Dancing Class (Mon/Wed/Fri Track · Cultural Dance Workout)',
+    dayOfWeek: 'Monday',
+    startTime: '4:00 PM',
+    endTime: '5:00 PM',
+    room: 'Dance Studio B',
+    instructor: 'Derege',
+    capacity: 24,
+    bookedMemberIds: ['tm-mem-104'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-mon-eve',
+    serviceId: 'aerobics',
+    serviceName: 'Evening Group Workout (Express HIIT Conditioning)',
+    dayOfWeek: 'Monday',
+    startTime: '6:30 PM',
+    endTime: '7:00 PM',
+    room: 'Main Training Floor',
+    instructor: 'Elena Ramos',
+    capacity: 25,
+    bookedMemberIds: ['tm-mem-101'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-mon-dance-eve',
+    serviceId: 'dance',
+    serviceName: 'Evening Dancing Class (Mon/Wed/Fri Track · Cultural & Cardio Fusion)',
+    dayOfWeek: 'Monday',
+    startTime: '7:30 PM',
+    endTime: '8:30 PM',
+    room: 'Dance Studio B',
+    instructor: 'Derege',
+    capacity: 24,
+    bookedMemberIds: ['tm-mem-104'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+
+  // TUESDAY (Group Workouts: 9-10 AM, 6:30-7 PM | Dancing Class Track B [Tue/Thu/Sat]: 10:30-11:30 AM, 4-5 PM, 7:30-8:30 PM | Taekwondo: 5:15 PM)
+  {
+    id: 'cls-tue-late',
     serviceId: 'strength',
-    serviceName: 'Barbell Hypertrophy & Deadlift Lab',
+    serviceName: 'Late Morning Group Workout (Barbell & Functional Conditioning)',
     dayOfWeek: 'Tuesday',
-    startTime: '08:00 AM',
-    endTime: '09:00 AM',
+    startTime: '9:00 AM',
+    endTime: '10:00 AM',
     room: 'Weight Rig Zone',
     instructor: 'Coach Marcus Vance',
     capacity: 18,
@@ -286,27 +363,55 @@ export const INITIAL_CLASSES: TimetableClass[] = [
     level: 'Intermediate / Advanced'
   },
   {
-    id: 'cls-4',
-    serviceId: 'taekwondo',
-    serviceName: 'Youth Taekwondo (White to Yellow Belts)',
+    id: 'cls-tue-dance-morn',
+    serviceId: 'dance',
+    serviceName: 'Morning Dancing Class (Tue/Thu/Sat Track · Cultural Dance & Aerobic Pulse)',
     dayOfWeek: 'Tuesday',
-    startTime: '04:15 PM',
-    endTime: '05:15 PM',
-    room: 'Dojo Hall B',
-    instructor: 'Master Jin-Woo Park',
-    capacity: 20,
-    bookedMemberIds: ['tm-mem-105'],
+    startTime: '10:30 AM',
+    endTime: '11:30 AM',
+    room: 'Dance Studio B',
+    instructor: 'Derege',
+    capacity: 24,
+    bookedMemberIds: ['tm-mem-104'],
     waitlistMemberIds: [],
-    level: 'Kids 5-12'
+    level: 'All Levels'
   },
   {
-    id: 'cls-5',
+    id: 'cls-tue-dance-aft',
+    serviceId: 'dance',
+    serviceName: 'Afternoon Dancing Class (Tue/Thu/Sat Track · Cultural Choreography)',
+    dayOfWeek: 'Tuesday',
+    startTime: '4:00 PM',
+    endTime: '5:00 PM',
+    room: 'Dance Studio B',
+    instructor: 'Derege',
+    capacity: 24,
+    bookedMemberIds: [],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-tue-tkd',
+    serviceId: 'taekwondo',
+    serviceName: 'TM3 Taekwondo (Technique, Forms & Belt Progression)',
+    dayOfWeek: 'Tuesday',
+    startTime: '5:15 PM',
+    endTime: '6:15 PM',
+    room: 'TM3 Main Dojang',
+    instructor: 'Master Mulatu Biru',
+    capacity: 25,
+    bookedMemberIds: ['tm-mem-101', 'tm-mem-105'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-tue-eve',
     serviceId: 'aerobics',
-    serviceName: 'Athletic Step & Core Blast',
-    dayOfWeek: 'Wednesday',
-    startTime: '06:00 PM',
-    endTime: '06:50 PM',
-    room: 'Studio Alpha',
+    serviceName: 'Evening Group Workout (Metabolic Power Circuit)',
+    dayOfWeek: 'Tuesday',
+    startTime: '6:30 PM',
+    endTime: '7:00 PM',
+    room: 'Main Training Floor',
     instructor: 'Elena Ramos',
     capacity: 25,
     bookedMemberIds: ['tm-mem-104'],
@@ -314,12 +419,128 @@ export const INITIAL_CLASSES: TimetableClass[] = [
     level: 'All Levels'
   },
   {
-    id: 'cls-6',
+    id: 'cls-tue-dance-eve',
+    serviceId: 'dance',
+    serviceName: 'Evening Dancing Class (Tue/Thu/Sat Track · High-Energy Cultural Dance)',
+    dayOfWeek: 'Tuesday',
+    startTime: '7:30 PM',
+    endTime: '8:30 PM',
+    room: 'Dance Studio B',
+    instructor: 'Derege',
+    capacity: 24,
+    bookedMemberIds: ['tm-mem-104'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+
+  // WEDNESDAY (Group Workouts: 6-7 AM, 9-10 AM, 6:30-7 PM | Dancing Class Track A [Mon/Wed/Fri]: 10:30-11:30 AM, 4-5 PM, 7:30-8:30 PM | Taekwondo: 5:15 PM)
+  {
+    id: 'cls-wed-early',
+    serviceId: 'aerobics',
+    serviceName: 'Early Morning Group Workout (Sunrise Strength & Cardio)',
+    dayOfWeek: 'Wednesday',
+    startTime: '6:00 AM',
+    endTime: '7:00 AM',
+    room: 'Main Training Floor',
+    instructor: 'Elena Ramos',
+    capacity: 25,
+    bookedMemberIds: ['tm-mem-101', 'tm-mem-104'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-wed-late',
     serviceId: 'strength',
-    serviceName: 'Squat & Overhead Press Conditioning',
+    serviceName: 'Late Morning Group Workout (Athletic Conditioning)',
+    dayOfWeek: 'Wednesday',
+    startTime: '9:00 AM',
+    endTime: '10:00 AM',
+    room: 'Main Turf & Rig',
+    instructor: 'Coach Marcus Vance',
+    capacity: 20,
+    bookedMemberIds: ['tm-mem-106'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-wed-dance-morn',
+    serviceId: 'dance',
+    serviceName: 'Morning Dancing Class (Mon/Wed/Fri Track · Cultural Dance & Rhythm)',
+    dayOfWeek: 'Wednesday',
+    startTime: '10:30 AM',
+    endTime: '11:30 AM',
+    room: 'Dance Studio B',
+    instructor: 'Derege',
+    capacity: 24,
+    bookedMemberIds: ['tm-mem-104'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-wed-dance-aft',
+    serviceId: 'dance',
+    serviceName: 'Afternoon Dancing Class (Mon/Wed/Fri Track · Cultural Dance Workout)',
+    dayOfWeek: 'Wednesday',
+    startTime: '4:00 PM',
+    endTime: '5:00 PM',
+    room: 'Dance Studio B',
+    instructor: 'Derege',
+    capacity: 24,
+    bookedMemberIds: [],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-wed-tkd',
+    serviceId: 'taekwondo',
+    serviceName: 'TM3 Taekwondo (Poomsae, Kicking Drills & Discipline)',
+    dayOfWeek: 'Wednesday',
+    startTime: '5:15 PM',
+    endTime: '6:15 PM',
+    room: 'TM3 Main Dojang',
+    instructor: 'Master Mulatu Biru',
+    capacity: 25,
+    bookedMemberIds: ['tm-mem-105'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-wed-eve',
+    serviceId: 'aerobics',
+    serviceName: 'Evening Group Workout (Cardio & Core Blast)',
+    dayOfWeek: 'Wednesday',
+    startTime: '6:30 PM',
+    endTime: '7:00 PM',
+    room: 'Main Training Floor',
+    instructor: 'Elena Ramos',
+    capacity: 25,
+    bookedMemberIds: ['tm-mem-101'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-wed-dance-eve',
+    serviceId: 'dance',
+    serviceName: 'Evening Dancing Class (Mon/Wed/Fri Track · Cultural & Cardio Fusion)',
+    dayOfWeek: 'Wednesday',
+    startTime: '7:30 PM',
+    endTime: '8:30 PM',
+    room: 'Dance Studio B',
+    instructor: 'Derege',
+    capacity: 24,
+    bookedMemberIds: ['tm-mem-104'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+
+  // THURSDAY (Group Workouts: 9-10 AM, 6:30-7 PM | Dancing Class Track B [Tue/Thu/Sat]: 10:30-11:30 AM, 4-5 PM, 7:30-8:30 PM | Taekwondo: 5:15 PM)
+  {
+    id: 'cls-thu-late',
+    serviceId: 'strength',
+    serviceName: 'Late Morning Group Workout (Squat & Press Power)',
     dayOfWeek: 'Thursday',
-    startTime: '05:30 PM',
-    endTime: '06:30 PM',
+    startTime: '9:00 AM',
+    endTime: '10:00 AM',
     room: 'Weight Rig Zone',
     instructor: 'Coach Marcus Vance',
     capacity: 18,
@@ -328,27 +549,85 @@ export const INITIAL_CLASSES: TimetableClass[] = [
     level: 'All Levels'
   },
   {
-    id: 'cls-7',
-    serviceId: 'taekwondo',
-    serviceName: 'Youth Taekwondo (Green & Blue Belts)',
+    id: 'cls-thu-dance-morn',
+    serviceId: 'dance',
+    serviceName: 'Morning Dancing Class (Tue/Thu/Sat Track · Cultural Dance & Aerobic Pulse)',
     dayOfWeek: 'Thursday',
-    startTime: '04:15 PM',
-    endTime: '05:15 PM',
-    room: 'Dojo Hall B',
-    instructor: 'Master Jin-Woo Park',
-    capacity: 20,
-    bookedMemberIds: ['tm-mem-105'],
+    startTime: '10:30 AM',
+    endTime: '11:30 AM',
+    room: 'Dance Studio B',
+    instructor: 'Derege',
+    capacity: 24,
+    bookedMemberIds: ['tm-mem-104'],
     waitlistMemberIds: [],
-    level: 'Kids 5-12'
+    level: 'All Levels'
   },
   {
-    id: 'cls-8',
+    id: 'cls-thu-dance-aft',
+    serviceId: 'dance',
+    serviceName: 'Afternoon Dancing Class (Tue/Thu/Sat Track · Cultural Choreography)',
+    dayOfWeek: 'Thursday',
+    startTime: '4:00 PM',
+    endTime: '5:00 PM',
+    room: 'Dance Studio B',
+    instructor: 'Derege',
+    capacity: 24,
+    bookedMemberIds: [],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-thu-tkd',
+    serviceId: 'taekwondo',
+    serviceName: 'TM3 Taekwondo (Sparring Drills & Belt Advancement)',
+    dayOfWeek: 'Thursday',
+    startTime: '5:15 PM',
+    endTime: '6:15 PM',
+    room: 'TM3 Main Dojang',
+    instructor: 'Master Mulatu Biru',
+    capacity: 25,
+    bookedMemberIds: ['tm-mem-101', 'tm-mem-105'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-thu-eve',
     serviceId: 'aerobics',
-    serviceName: 'TGIF HIIT Cardio Party',
+    serviceName: 'Evening Group Workout (Core & Kettlebell Express)',
+    dayOfWeek: 'Thursday',
+    startTime: '6:30 PM',
+    endTime: '7:00 PM',
+    room: 'Main Training Floor',
+    instructor: 'Elena Ramos',
+    capacity: 25,
+    bookedMemberIds: ['tm-mem-101'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-thu-dance-eve',
+    serviceId: 'dance',
+    serviceName: 'Evening Dancing Class (Tue/Thu/Sat Track · High-Energy Cultural Dance)',
+    dayOfWeek: 'Thursday',
+    startTime: '7:30 PM',
+    endTime: '8:30 PM',
+    room: 'Dance Studio B',
+    instructor: 'Derege',
+    capacity: 24,
+    bookedMemberIds: ['tm-mem-104'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+
+  // FRIDAY (Group Workouts: 6-7 AM, 9-10 AM, 6:30-7 PM | Dancing Class Track A [Mon/Wed/Fri]: 10:30-11:30 AM, 4-5 PM, 7:30-8:30 PM | Taekwondo: 5:15 PM)
+  {
+    id: 'cls-fri-early',
+    serviceId: 'aerobics',
+    serviceName: 'Early Morning Group Workout (Endurance & Power Intervals)',
     dayOfWeek: 'Friday',
-    startTime: '06:00 PM',
-    endTime: '07:00 PM',
-    room: 'Studio Alpha',
+    startTime: '6:00 AM',
+    endTime: '7:00 AM',
+    room: 'Main Training Floor',
     instructor: 'Elena Ramos',
     capacity: 25,
     bookedMemberIds: ['tm-mem-101', 'tm-mem-104'],
@@ -356,30 +635,158 @@ export const INITIAL_CLASSES: TimetableClass[] = [
     level: 'All Levels'
   },
   {
-    id: 'cls-9',
-    serviceId: 'taekwondo',
-    serviceName: 'Youth Weekend Sparring & Poomsae',
-    dayOfWeek: 'Saturday',
-    startTime: '10:00 AM',
-    endTime: '11:15 AM',
-    room: 'Dojo Hall B',
-    instructor: 'Master Jin-Woo Park',
+    id: 'cls-fri-late',
+    serviceId: 'strength',
+    serviceName: 'Late Morning Group Workout (Total Body Strength)',
+    dayOfWeek: 'Friday',
+    startTime: '9:00 AM',
+    endTime: '10:00 AM',
+    room: 'Weight Rig Zone',
+    instructor: 'Coach Marcus Vance',
     capacity: 20,
-    bookedMemberIds: ['tm-mem-105'],
+    bookedMemberIds: ['tm-mem-106'],
     waitlistMemberIds: [],
-    level: 'Kids 5-12'
+    level: 'All Levels'
   },
   {
-    id: 'cls-10',
+    id: 'cls-fri-dance-morn',
+    serviceId: 'dance',
+    serviceName: 'Morning Dancing Class (Mon/Wed/Fri Track · Cultural Dance & Rhythm)',
+    dayOfWeek: 'Friday',
+    startTime: '10:30 AM',
+    endTime: '11:30 AM',
+    room: 'Dance Studio B',
+    instructor: 'Derege',
+    capacity: 24,
+    bookedMemberIds: ['tm-mem-104'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-fri-dance-aft',
+    serviceId: 'dance',
+    serviceName: 'Afternoon Dancing Class (Mon/Wed/Fri Track · Cultural Dance Workout)',
+    dayOfWeek: 'Friday',
+    startTime: '4:00 PM',
+    endTime: '5:00 PM',
+    room: 'Dance Studio B',
+    instructor: 'Derege',
+    capacity: 24,
+    bookedMemberIds: [],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-fri-tkd',
+    serviceId: 'taekwondo',
+    serviceName: 'TM3 Taekwondo (Friday Sparring & Board Breaking)',
+    dayOfWeek: 'Friday',
+    startTime: '5:15 PM',
+    endTime: '6:15 PM',
+    room: 'TM3 Main Dojang',
+    instructor: 'Master Mulatu Biru',
+    capacity: 25,
+    bookedMemberIds: ['tm-mem-101', 'tm-mem-105'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-fri-eve',
+    serviceId: 'aerobics',
+    serviceName: 'Evening Group Workout (TGIF Finisher)',
+    dayOfWeek: 'Friday',
+    startTime: '6:30 PM',
+    endTime: '7:00 PM',
+    room: 'Main Training Floor',
+    instructor: 'Elena Ramos',
+    capacity: 25,
+    bookedMemberIds: ['tm-mem-101', 'tm-mem-104'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-fri-dance-eve',
+    serviceId: 'dance',
+    serviceName: 'Evening Dancing Class (Mon/Wed/Fri Track · Cultural & Cardio Fusion)',
+    dayOfWeek: 'Friday',
+    startTime: '7:30 PM',
+    endTime: '8:30 PM',
+    room: 'Dance Studio B',
+    instructor: 'Derege',
+    capacity: 24,
+    bookedMemberIds: ['tm-mem-104'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+
+  // SATURDAY (Dancing Class Track B [Tue/Thu/Sat]: 10:30-11:30 AM, 4-5 PM, 7:30-8:30 PM + Weekend Taekwondo & Strength)
+  {
+    id: 'cls-sat-tkd',
+    serviceId: 'taekwondo',
+    serviceName: 'Weekend Taekwondo Sparring & Poomsae',
+    dayOfWeek: 'Saturday',
+    startTime: '10:00 AM',
+    endTime: '11:00 AM',
+    room: 'TM3 Main Dojang',
+    instructor: 'Master Mulatu Biru',
+    capacity: 25,
+    bookedMemberIds: ['tm-mem-105'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-sat-dance-morn',
+    serviceId: 'dance',
+    serviceName: 'Morning Dancing Class (Tue/Thu/Sat Track · Cultural Dance & Aerobic Pulse)',
+    dayOfWeek: 'Saturday',
+    startTime: '10:30 AM',
+    endTime: '11:30 AM',
+    room: 'Dance Studio B',
+    instructor: 'Derege',
+    capacity: 24,
+    bookedMemberIds: ['tm-mem-104'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-sat-str',
     serviceId: 'strength',
-    serviceName: 'Strongman & Functional Kettlebells',
+    serviceName: 'Saturday Team Conditioning & Kettlebells',
     dayOfWeek: 'Saturday',
     startTime: '11:30 AM',
-    endTime: '12:45 PM',
+    endTime: '12:30 PM',
     room: 'Main Turf & Rig',
     instructor: 'Coach Marcus Vance',
     capacity: 18,
     bookedMemberIds: ['tm-mem-101'],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-sat-dance-aft',
+    serviceId: 'dance',
+    serviceName: 'Afternoon Dancing Class (Tue/Thu/Sat Track · Cultural Choreography)',
+    dayOfWeek: 'Saturday',
+    startTime: '4:00 PM',
+    endTime: '5:00 PM',
+    room: 'Dance Studio B',
+    instructor: 'Derege',
+    capacity: 24,
+    bookedMemberIds: [],
+    waitlistMemberIds: [],
+    level: 'All Levels'
+  },
+  {
+    id: 'cls-sat-dance-eve',
+    serviceId: 'dance',
+    serviceName: 'Evening Dancing Class (Tue/Thu/Sat Track · Weekend Dance Showcase)',
+    dayOfWeek: 'Saturday',
+    startTime: '7:30 PM',
+    endTime: '8:30 PM',
+    room: 'Dance Studio B',
+    instructor: 'Derege',
+    capacity: 24,
+    bookedMemberIds: ['tm-mem-104'],
     waitlistMemberIds: [],
     level: 'All Levels'
   }
@@ -387,40 +794,58 @@ export const INITIAL_CLASSES: TimetableClass[] = [
 
 export const INITIAL_ANNOUNCEMENTS: Announcement[] = [
   {
+    id: 'ann-tm3-1',
+    title: 'Claim Your Member Profile Online (4-Digit Member PIN)',
+    content: 'Already training at TM3 Martial Arts Academy? You can now claim your profile online! Enter your name and the 4-digit PIN from the paper slip handed out in class (or ask the front desk). Parents can also claim their child’s profile using their PIN.',
+    date: '2026-10-27',
+    category: 'General',
+    pinned: true,
+    author: 'Master Mulatu Biru'
+  },
+  {
+    id: 'ann-tm3-2',
+    title: 'Pro Shop Restock — Uniforms & Gear Available',
+    content: 'New uniforms (sizes XS–XXL), sparring gear sets, and TM3 branded apparel are back in stock at the front desk. Stop by before or after your session to get fitted.',
+    date: '2026-10-26',
+    category: 'Facility',
+    pinned: true,
+    author: 'TM3 Front Desk'
+  },
+  {
+    id: 'ann-tm3-3',
+    title: 'Members Registration & Digital Health Waiver',
+    content: 'Welcome to the TM3 Martial Arts Academy website! Please scan the QR code at the desk or open the Registration portal to complete your registration, health history, and digital liability waiver so we can keep our member records up to date.',
+    date: '2026-10-25',
+    category: 'General',
+    pinned: false,
+    author: 'Master Mulatu Biru'
+  },
+  {
     id: 'ann-1',
     title: 'Fall Ridge Summit Hike Scheduled for Next Saturday',
     content: 'Registration is now open for our November Alpine Ridge 12km hike. Departure at 7:30 AM from the TM facility parking lot. Carpools organized via the Telegram channel. Remember to bring sturdy ankle boots, 2L water, and snacks!',
-    date: '2026-10-26',
+    date: '2026-10-24',
     category: 'Hiking & Events',
-    pinned: true,
+    pinned: false,
     author: 'Coach Marcus Vance'
   },
   {
     id: 'ann-2',
-    title: 'Kids Taekwondo Quarterly Belt Promotion Exam Date',
-    content: 'Master Jin-Woo has announced the Autumn belt rank advancement testing on Saturday, November 14th at 2:00 PM. Parents of eligible yellow, green, and blue belt candidates will receive individual attendance confirmation notices.',
-    date: '2026-10-24',
+    title: 'Taekwondo Quarterly Belt Promotion Exam Date',
+    content: 'Master Mulatu Biru has announced the Autumn belt rank advancement testing on Saturday, November 14th at 2:00 PM. Parents and students of eligible yellow, green, and blue belt candidates will receive attendance confirmation notices.',
+    date: '2026-10-22',
     category: 'Kids Program',
-    pinned: true,
-    author: 'Master Jin-Woo Park'
-  },
-  {
-    id: 'ann-3',
-    title: 'New Eleiko Competition Barbells & Calibrated Plates Arrived',
-    content: 'We have upgraded the main weight room with four new Olympic barbells and 400kg of bumper plates to accommodate the growing morning strength team. Please ensure collars are used at all times and re-rack your weights.',
-    date: '2026-10-20',
-    category: 'Facility',
     pinned: false,
-    author: 'Coach Marcus Vance'
+    author: 'Master Mulatu Biru'
   },
   {
     id: 'ann-4',
-    title: 'Winter Class Timetable Adjustments Starting Nov 1',
-    content: 'Check out the refreshed winter schedule. We are adding an extra 7:00 AM Aerobics class on Wednesdays and a Saturday morning kettlebell endurance session. Review the timetable tab to secure your spot.',
+    title: 'Group Workout & Dancing Class Schedule Now Live',
+    content: 'Check out our full Group Workout Sessions (Early Morning M/W/F 6–7 AM, Late Morning M–F 9–10 AM, Evening M–F 6:30–7 PM) and Dancing Class Schedule with Instructor Derege (Mon/Wed/Fri OR Tue/Thu/Sat at 10:30–11:30 AM, 4:00–5:00 PM, 7:30–8:30 PM).',
     date: '2026-10-18',
     category: 'Classes',
     pinned: false,
-    author: 'Elena Ramos'
+    author: 'Derege & Coaching Staff'
   }
 ];
 

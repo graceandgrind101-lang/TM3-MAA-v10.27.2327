@@ -26,7 +26,7 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-[#f8fafd] border-b border-[#e0e2ec]">
+    <section id="contact" className="scroll-mt-24 py-20 bg-[#f8fafd] border-b border-[#e0e2ec]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left: Google Maps Location & Hours */}
@@ -51,9 +51,9 @@ export const ContactSection: React.FC = () => {
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="font-semibold text-xs text-[#1f1f1f]">Campus Location</div>
-                  <div className="text-xs text-[#444746] mt-0.5">1420 Athletic Way, Suite 100</div>
-                  <div className="text-[11px] text-[#747775]">Pacific Rim Sports District (USA & Canada)</div>
+                  <div className="font-semibold text-xs text-[#1f1f1f]">TM3 Martial Arts Academy & Pro Shop</div>
+                  <div className="text-xs text-[#444746] mt-0.5">1420 Athletic Way, Suite 100 · Main Dojang & Studio B</div>
+                  <div className="text-[11px] text-[#747775]">Pro Shop at Front Desk: Uniforms (XS–XXL) & Sparring Gear</div>
                 </div>
               </div>
 
@@ -62,20 +62,27 @@ export const ContactSection: React.FC = () => {
                   <Clock className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="font-semibold text-xs text-[#1f1f1f]">Operating Hours</div>
-                  <div className="text-xs text-[#444746] mt-0.5">Mon – Fri: 05:00 AM – 11:00 PM</div>
-                  <div className="text-[11px] text-[#747775]">Sat & Sun: 06:30 AM – 09:00 PM</div>
+                  <div className="font-semibold text-xs text-[#1f1f1f]">Program & Class Hours</div>
+                  <div className="text-xs text-[#444746] mt-0.5">
+                    Group Workouts: 6:00–7:00 AM (M/W/F) · 9:00–10:00 AM (M–F) · 6:30–7:00 PM (M–F)
+                  </div>
+                  <div className="text-[11px] text-[#747775] mt-0.5">
+                    Dancing Classes (M/W/F or T/Th/Sat): 10:30–11:30 AM · 4:00–5:00 PM · 7:30–8:30 PM
+                  </div>
+                  <div className="text-[11px] text-[#1a73e8] font-medium mt-0.5">
+                    Taekwondo: Tue, Wed, Thu, Fri at 5:15 PM & Sat at 10:00 AM
+                  </div>
                 </div>
               </div>
 
               <div className="flex items-start gap-3.5 p-4 bg-[#ffffff] rounded-2xl border border-[#e0e2ec] shadow-xs">
                 <div className="w-8 h-8 rounded-full bg-[#c4eed0] text-[#137333] flex items-center justify-center shrink-0 mt-0.5">
-                  <Phone className="w-4 h-4" />
+                  <Mail className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="font-semibold text-xs text-[#1f1f1f]">Direct Contact</div>
-                  <div className="text-xs text-[#444746] mt-0.5">+1 (555) 867-7678</div>
-                  <div className="text-[11px] text-[#747775]">contact@tmsportsclub.com</div>
+                  <div className="font-semibold text-xs text-[#1f1f1f]">Official Academy Contact</div>
+                  <div className="text-xs text-[#1a73e8] font-medium mt-0.5">tm3martialartsacademy@gmail.com</div>
+                  <div className="text-[11px] text-[#747775]">+1 (555) 867-7678 · https://tm3gym.com</div>
                 </div>
               </div>
             </div>
