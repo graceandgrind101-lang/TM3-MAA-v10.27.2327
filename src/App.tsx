@@ -22,6 +22,7 @@ import { QuickSearchModal } from './components/QuickSearchModal';
 import { Footer } from './components/Footer';
 import { CalendarView } from './components/CalendarView';
 import { GeminiChatbot } from './components/GeminiChatbot';
+import { InteractiveDojang3D } from './components/InteractiveDojang3D';
 import { SportService } from './types';
 import { CheckCircle2 } from 'lucide-react';
 
@@ -75,6 +76,15 @@ function MainApp() {
     }, 50);
   };
 
+  const handleExplore3D = () => {
+    const el = document.getElementById('dojang-3d');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      setCurrentTab('3d-dojang');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#f8fafd] text-[#1f1f1f] flex flex-col font-sans selection:bg-[#d3e3fd] selection:text-[#041e49]">
       {/* 1. Google Account Switcher Bar */}
@@ -93,12 +103,16 @@ function MainApp() {
           <div className="py-10 max-w-7xl mx-auto px-6">
             <CalendarView onBackToHome={() => setCurrentTab('home')} />
           </div>
+        ) : currentTab === '3d-dojang' ? (
+          <InteractiveDojang3D isFullPage onNavigateToSchedule={handleViewSchedule} />
         ) : (
           <>
             <Hero
               onExploreServices={handleExploreServices}
               onViewSchedule={handleViewSchedule}
+              onExplore3D={handleExplore3D}
             />
+            <InteractiveDojang3D onNavigateToSchedule={handleViewSchedule} />
             <ServicesSection onSelectService={handleSelectService} />
             <ScheduleSection />
             <AnnouncementsSection />

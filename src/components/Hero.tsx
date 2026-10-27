@@ -1,14 +1,15 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
-import { ArrowRight, Calendar, CheckCircle2, KeyRound } from 'lucide-react';
+import { ArrowRight, Box, Calendar, CheckCircle2, KeyRound } from 'lucide-react';
 import heroImg from '../assets/images/hero_athletic_training_1793107474900.jpg';
 
 interface HeroProps {
   onExploreServices: () => void;
   onViewSchedule: () => void;
+  onExplore3D?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewSchedule }) => {
+export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewSchedule, onExplore3D }) => {
   const { setIsRegistrationOpen, members, classes, language } = useApp();
 
   const activeCount = members.filter((m) => m.status === 'active').length;
@@ -51,6 +52,16 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewSchedule })
                 <span>{language === 'en' ? 'Join / Register' : 'Rejoindre le Club'}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
+
+              {onExplore3D && (
+                <button
+                  onClick={onExplore3D}
+                  className="flex items-center gap-1.5 px-5 py-3 rounded-full bg-[#0f141d] hover:bg-[#1e293b] text-white text-sm font-medium shadow-xs transition-colors whitespace-nowrap"
+                >
+                  <Box className="w-4 h-4 text-[#60a5fa]" />
+                  <span>{language === 'en' ? 'Explore 3D Dojang' : 'Explorer Dojang 3D'}</span>
+                </button>
+              )}
 
               <button
                 onClick={() => setIsRegistrationOpen(true)}

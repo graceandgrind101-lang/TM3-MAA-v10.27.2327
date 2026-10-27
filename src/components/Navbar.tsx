@@ -15,6 +15,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, setCurrentTab }) => 
 
   const navLinks = [
     { id: 'home', labelEn: 'Overview', labelFr: 'Aperçu' },
+    { id: '3d-dojang', labelEn: '3D Dojang', labelFr: 'Dojang 3D' },
     { id: 'services', labelEn: 'Disciplines', labelFr: 'Disciplines' },
     { id: 'schedule', labelEn: 'Schedule', labelFr: 'Planning' },
     { id: 'calendar', labelEn: 'Tournaments & Calendar', labelFr: 'Tournois & Calendrier' },
